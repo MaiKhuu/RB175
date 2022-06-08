@@ -1,0 +1,28 @@
+<h2 class="content-subhead">Search</h2>
+
+<form action="/search" method="get">
+  <input name="query" value="<%= params[:query] %>">
+  <button type="submit">Search</button>
+</form>
+
+<% if !params[:query].nil? %>
+
+  <% if !chapters_matching(params[:query]).empty? %>
+    <h2>Result for "<%= params[:query] %>"</h3>
+    <ul class="search-chapter-matching">
+      <% chapters_matching(params[:query]).each do |chapter_number| %>
+        <li><h4><%= @contents[chapter_number-1]%></h4></li>
+
+        <ul class="search-paragraph-matching">
+          <% chapter_paragraphs = in_paragraphs(content_of_chapter(chapter_number), "chapter" + chapter_number.to_s) %>
+          <% paragraphs_matching(params[:query], chapter_paragraphs).each do |index| %>
+            <li><a href="/chapters/<%= chapter_number %>#chapter<%= chapter_number%>-<%= index+1 %>"><%= chapter_paragraphs[index].gsub(params[:query], "<strong>#{params[:query]}</strong>") %></a></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </ul>
+
+  <% else %>
+    <p>Sorry, no matches were found</p>
+  <% end %>
+<% end %>
