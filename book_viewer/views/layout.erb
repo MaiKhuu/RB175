@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><%= @main_title%></title>
+    <title><%= @title%></title>
 
     <link rel="stylesheet" href="/stylesheets/pure-min.css">
     <link rel="stylesheet" href="/stylesheets/fonts.css">
@@ -23,11 +23,11 @@
               <a class="pure-menu-heading" href="/">Table of Contents</a>
 
               <ul class="pure-menu-list">
-                <% @contents.each do |chapter| %>
-                  <li class="pure-menu-item">
-                    <a href="#" class="pure-menu-link"><%= chapter%></a>
-                  </li>
-                <% end %>
+                <li class="pure-menu-item">
+                  <% @toc.each_with_index do |chapter_name, index| %>
+                    <li class="pure-menu-item"><a href="/chapters/<%= index + 1 %>" class="pure-menu-link"><%= chapter_name %></a></li>
+                  <% end %>
+                </li>
               </ul>
           </div>
       </div>
