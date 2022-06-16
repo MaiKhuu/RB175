@@ -1,0 +1,14 @@
+<h3>Personel file for: <%= @user_name.to_s.capitalize %> </h3>
+
+<p><strong><%= @user_name.to_s.capitalize %>'s email address: </strong><%= @user_email %></p>
+
+<p><strong><%= @user_name.to_s.capitalize %>'s interests: </strong><%= @user_interests.join(", ") %></p>
+
+<h4>Check out other users' files:</h4>
+<% @users.each do |name| %>
+  <% unless name == @user_name %>
+    <li>
+      <a href="/users/<%= name %>"><%= name.capitalize %></a>
+    </li>
+  <% end %>
+<% end %>

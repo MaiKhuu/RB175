@@ -1,0 +1,10 @@
+<div class="user-names">
+  <h3>Usernames included are: </h3>
+  <ul>
+    <% @users.each do |name| %>
+      <li>
+        <a href="/users/<%= name %>"><%= name.capitalize %></a>
+      </li>
+    <% end %>
+  </ul>
+</div>
