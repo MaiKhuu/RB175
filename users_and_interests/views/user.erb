@@ -1,4 +1,6 @@
 <h3>Personel file for: <%= @user_name.to_s.capitalize %> </h3>
+<p><%= p params["name"].to_sym %></p>
+<p><%= p params[:name].to_sym %></p>
 
 <p><strong><%= @user_name.to_s.capitalize %>'s email address: </strong><%= @user_email %></p>
 
